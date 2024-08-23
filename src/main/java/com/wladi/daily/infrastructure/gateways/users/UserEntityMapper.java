@@ -1,9 +1,9 @@
-package com.wladi.daily.infrastructure.gateways;
+package com.wladi.daily.infrastructure.gateways.users;
 
 import org.springframework.stereotype.Component;
 
-import com.wladi.daily.domain.entity.User;
-import com.wladi.daily.infrastructure.persistences.UserEntity;
+import com.wladi.daily.domain.entity.users.User;
+import com.wladi.daily.infrastructure.persistences.users.UserEntity;
 
 @Component
 public class UserEntityMapper {
