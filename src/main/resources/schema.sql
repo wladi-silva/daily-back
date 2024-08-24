@@ -1,7 +1,14 @@
-CREATE TABLE IF NOT EXISTS `tb_users` (
-  id bigint AUTO_INCREMENT primary key,
-  name varchar(255) not null,
-  username varchar(255) not null,
-  password varchar(255) not null,
-  email varchar(255) not null
+CREATE TABLE tb_phase (
+  phase_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) UNIQUE NOT NULL,
+  subtitle VARCHAR(255),
+  class_name VARCHAR(255)
+);
+
+CREATE TABLE tb_user (
+  user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  username VARCHAR(255) UNIQUE NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL
 );

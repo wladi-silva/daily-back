@@ -2,6 +2,8 @@ package com.wladi.daily.infrastructure.controllers.users;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,36 +29,37 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public UserResponse user(@PathVariable String username) {
+    public ResponseEntity<UserResponse> getUser(@PathVariable String username) {
         User foundUser = userInteractor.findUser(username);
-        return userDtoMapper.toResponse(foundUser);
+        return ResponseEntity.status(HttpStatus.OK).body(userDtoMapper.toResponse(foundUser));
     }
 
     @GetMapping
-    public List<UserResponse> getAllUsers() {
+    public ResponseEntity<List<UserResponse>> getAllUser() {
         List<User> users = userInteractor.findAllUsers();
-        return users.stream()
-                    .map(userDtoMapper::toResponse)
-                    .toList();
+        return ResponseEntity.status(HttpStatus.OK).body(users.stream()
+            .map(userDtoMapper::toResponse)
+            .toList());
     }
 
     @PostMapping
-    public UserResponse create(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
         User userDomain = userDtoMapper.toUser(userRequest);
         User savedUser = userInteractor.createUser(userDomain);
-        return userDtoMapper.toResponse(savedUser);
+        return ResponseEntity.status(HttpStatus.CREATED).body(userDtoMapper.toResponse(savedUser));
     }
 
     @PutMapping("/{username}")
-    public UserResponse update(@PathVariable String username, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> updateUser(@PathVariable String username, @RequestBody UserRequest userRequest) {
         User userDomain = userDtoMapper.toUser(username, userRequest);
         User updatedUser = userInteractor.updateUser(userDomain);
-        return userDtoMapper.toResponse(updatedUser);
+        return ResponseEntity.status(HttpStatus.OK).body(userDtoMapper.toResponse(updatedUser));
     }
 
     @DeleteMapping("/{username}")
-    public void delete(@PathVariable String username) {
+    public ResponseEntity<Void> deleteUser(@PathVariable String username) {
         userInteractor.deleteUser(username);
+        return ResponseEntity.noContent().build();
     }
 
 }
