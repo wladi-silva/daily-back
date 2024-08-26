@@ -1,4 +1,4 @@
-name: Daily Deploy Application
+name: Daily Deploy Application Production
 
 on: 
     push:
