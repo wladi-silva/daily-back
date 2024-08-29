@@ -21,6 +21,10 @@ public class PhaseEntity {
     private String subtitle;
     private String className;
 
+    public PhaseEntity() {
+        
+    }
+
     private PhaseEntity(PhaseEntityBuilder phaseEntityBuilder) {
         this.title = phaseEntityBuilder.title;
         this.subtitle = phaseEntityBuilder.subtitle;

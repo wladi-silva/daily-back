@@ -24,6 +24,10 @@ public class UserEntity {
     @Column(unique = true)
     private String email;
 
+    public UserEntity() {
+        
+    }
+
     private UserEntity(UserEntityBuilder userEntityBuilder) {
         this.name = userEntityBuilder.name;
         this.username = userEntityBuilder.username;
