@@ -18,8 +18,8 @@ public class UserDtoMapper {
 
     public User toUser(String username, UserRequest userRequest) {
         return new User(
-            username,
             userRequest.name(),
+            username,
             userRequest.email(),
             userRequest.password()
         );
